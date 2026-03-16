@@ -1,61 +1,78 @@
 # SISTEMA DE ARMAZENAMENTO 
 # Disciplina: Programação de Sistemas (PS)
-# Aula: 05 Revisão: Variáveis, Tipos e Controle de Fluxo
+# Aula: 04 Revisão: Variáveis, Tipos de Dados e Controle de Dados
 # Autor: Artur Lacerda da SIlva
 # Data: 2026/02/26
 # Repositório: https://github.com/20251CTB0100004-spec/2026-PS
 
-# DESCRIÇÃO:
-# Este programa analiza o estoque de uma biblioteca e permite ao usuário cadastrar novos livros.
+# DESCRIÇÃO: Estoque de uma loja 
 
 
-catalogo = [
-    {'titulo' : 'Volta ao mundo em 80 dias', 'autor' : 'Julio Verne', 'ano' : 1872, 'status' : 'disponível'},
-    {'titulo' : 'Dom Casmurro', 'autor' : 'Machado de Assis', 'ano' : 1899, 'status' : 'disponível'},
-    {'titulo' : 'O Pequeno Príncipe', 'autor' : 'Antoine de Saint-Exupery', 'ano' : 1943, 'status' : 'disponível'},
-    {'titulo' : '1984', 'autor' : 'George Orwell', 'ano' : 1948, 'status' : 'disponível'},
-    {'titulo' : 'O Senhor dos Anéis', 'autor' : 'J.R.R. Tolkien', 'ano' : 1954, 'status' : 'disponível'},
+estoque = [
+    {'produto' : 'mouse', 'qtd' : 1},
+    {'produto' : 'RAM 16gb', 'qtd' : 2},
+    {'produto' : 'RAM 4gb', 'qtd' : 3},
+    {'produto' : 'RAM 8gb', 'qtd' : 4},
+    {'produto' : 'cabo', 'qtd' : 5},
 ]
+global critico, adequado, excesso
 
+critico = 0
+adequado = 0
+excesso = 0
 
-def MostrarCatalogo():
-    print('=== Catálogo de Livros ===')
-    for livro in catalogo:
-        print(f"{livro['titulo']} - {livro['autor']} ({livro['ano']}) - {livro['status']}")
+def mostrar_estoque():
 
-
-def contagem():
-    contagem = 0
-    contagemdisp = 0
-    for contagemlivros in catalogo:
-        contagem += 1
-        if contagemlivros['status'] == 'disponível':
-            contagemdisp += 1
-    print('\n=== Contagem de Livros ===')    
-    print(f"Total de livros no catálogo: {contagem}")
-    print(f'Total de livros disponíveis: {contagemdisp}')
-
-
-def Main():
-    while True:
-
-        print('Deseja cadastrar um novo livro? (s/n)')
-        opcao = input().lower()
-        if opcao == 's':
-            titulo = input('Digite o título do livro: ')
-            autor = input('Digite o autor do livro: ')
-            ano = int(input('Digite o ano do livro: '))
-            catalogo.append({'titulo' : titulo, 'autor' : autor, 'ano' : ano, 'status' : 'disponível'})
+    print('===== Estoque completo: =====')
+    for item in estoque:
+        if item['qtd'] < 5:
+            print(f'Produto: {item['produto']} Situação: Crítica')
+            global critico
+            critico += 1
+        elif item['qtd'] < 20:
+            print(f'Produto: {item['produto']} Situação: Adequada')
+            global adequado
+            adequado += 1
         else:
-            print('\nEncerrando o programa. Até mais!\n')
-            MostrarCatalogo()
-            contagem()
-            break
+            print(f'Produto: {item['produto']} Situação: Excesso')
+            global excesso
+            excesso += 1
+    print('==============================')
 
-        print('=== Catálogo de Livros ===')
-        MostrarCatalogo()
+def main():
+    while True:
+        print('=== Lista de opções: ===')
+        print('[1] Mostrar o estoque\n[2] Adicionar ao estoque\n[3] Pegar do estoque\n[4] Sair\n=======================')
+        escolha = input('Digite a opção desejada: \n')
         
+        if escolha == '1':
+            mostrar_estoque()
+        elif escolha == '2':
+            produto = input('Digite o nome do produto: ')
+            qtd = int(input('Digite a quantidade a ser adicionada: '))
+            global critico, adequado, excesso
+            estoque.append({'produto': produto, 'qtd': qtd})
+            print(f'Produto {produto} adicionado com sucesso!')
+        elif escolha == '3':
+            produto = input('Digite o nome do produto: ')
+            qtd = int(input('Digite a quantidade a ser retirada: '))
+            for item in estoque:
+                if item['produto'] == produto:
+                    if item['qtd'] >= qtd:
+                        item['qtd'] -= qtd
+                        print(f'Produto {produto} retirado com sucesso!')
+                    else:
+                        print('Quantidade insuficiente em estoque.')
+                    break
+            else:
+                print('Produto não encontrado.')
+        elif escolha == '4':
+            print('Até mais!')
+            print(f'Produtos em situação crítica: {critico}')
+            print(f'Produtos em situação adequada: {adequado}')
+            print(f'Produtos em situação de excesso: {excesso}')
+            break
+        else:
+            print('Opção inválida. Tente novamente.')
 
-print('Bem vindo à Arturteca Livros!')
-MostrarCatalogo()
-Main()
+main()
