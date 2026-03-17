@@ -1,3 +1,12 @@
+# Centralizar o nome evita erros de digitação em todo o código
+ARQUIVO = "biblioteca.txt"
+SEPARADOR = "|" # separa campos em cada linha do .txt
+# Formato de cada linha no arquivo:
+#   titulo|autor|disponivel
+# Exemplo:
+#   Código Limpo | Robert C. Martin| False
+
+
 catalogo = [
 {"titulo": "O Programador Pragmático", "autor": "Andrew Hunt", "disponivel": True},
 {"titulo": "Código Limpo", "autor": "Robert C. Martin", "disponivel": False},
@@ -128,4 +137,45 @@ def menu():
             _, funcao = opcoes[escolha]
             funcao ()
 
+
+
+def carregar_catalogo ():
+    """Lê o .txt e reconstrói a lista de dicionários."""
+    catalogo = []
+    try:
+        # 'r' = leitura | encoding='utf-8' garante acentos corretos
+        with open (ARQUIVO, "r", encoding="utf-8") as f:
+            for linha in f:
+                linha = linha.strip()
+                if not linha:        # ignora linhas vazias
+                    continue
+                partes = linha.split(SEPARADOR)
+                if len(partes) != 3: # linha malformada pula
+                    continue
+                titulo, autor, disponivel_str = partes
+                catalogo.append({
+                    "titulo": titulo,
+                    "autor":  autor,
+                    # a string "True" no arquivo precisa virar bool True
+                    "disponivel": disponivel_str == "True"
+                    })
+    except FileNotFoundError:
+        pass # primeira execução: arquivo ainda não existe tudo bem
+    return catalogo
+
+
+def salvar_catalogo(catalogo):
+    """Grava toda a lista no arquivo .txt"""
+    try:
+        # 'w' write: cria se não existir, sobreescreve se existir
+        with open(ARQUIVO, 'w', encoding='utf-8') as f:
+            for livro in catalogo:
+                linha = f'{livro['titulo']} {SEPARADOR} {livro['autor']} {SEPARADOR} {livro['disponivel']}\n'
+                f.write(linha)
+            print(f"Catálogo salvo em '{ARQUIVO}'.")
+    except IOError as e:
+        # IOError: disco cheio, permissao negada, etc
+        print(f'Erro ao salvar: {e}')
 menu()
+carregar_catalogo()
+salvar_catalogo(catalogo)
