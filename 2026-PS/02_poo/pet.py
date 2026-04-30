@@ -1,0 +1,124 @@
+'''
+==================================================================
+# ARQUIVO    : pet.py
+# Disciplina : Programação de Sistemas (2026-2)
+# Aula       : Aula 20 - Por que POO?
+# Autor      : Artur Lacerda da Silva
+# Conceitos  : Classe, objeto, atributos, métodos, encapsulamento
+# Atividade  : Classe Pet
+==================================================================
+'''
+class Pet:
+    def __init__(self, nome, especie, idade, peso, vacinado, dono):
+        # Atributos originais
+        self.nome = nome
+        self.especie = especie
+        self.idade = idade
+        # Novos atributos
+        self.peso = peso
+        self.vacinado = vacinado
+        self.dono = dono
+        # Atributo de controle de estado
+        self.hospedado = False
+
+    def exibir_dados(self):
+        print("\n--- Dados do Pet ---")
+        print(f"Nome: {self.nome}")
+        print(f"Espécie: {self.especie}")
+        print(f"Idade: {self.idade} anos")
+        print(f"Peso: {self.peso} kg")
+        print(f"Dono: {self.dono}")
+        status_vacina = "Sim" if self.vacinado else "Não"
+        print(f"Vacinado: {status_vacina}")
+        status_hospedagem = "Hospedado" if self.hospedado else "Não hospedado"
+        print(f"Status: {status_hospedagem}")
+        print("-" * 20)
+
+    def registrar_entrada(self):
+        if not self.hospedado:
+            self.hospedado = True
+            print(f"Entrada registrada: {self.nome} agora está no hotel.")
+        else:
+            print(f"Atenção: {self.nome} já está hospedado.")
+
+    def registrar_saida(self):
+        if self.hospedado:
+            self.hospedado = False
+            print(f"Saída registrada: {self.nome} saiu do hotel.")
+        else:
+            print(f"Atenção: {self.nome} não está hospedado no momento.")
+
+    def calcular_diaria(self, dias=1):
+        if self.idade <= 3:
+            valor_diaria = 50.00
+        elif 4 <= self.idade <= 10:
+            valor_diaria = 60.00
+        else:
+            valor_diaria = 75.00
+            
+        total = valor_diaria * dias
+        print(f"Valor da diária para {self.nome}: R$ {valor_diaria:.2f}")
+        if dias > 1:
+            print(f"Valor total para {dias} dias: R$ {total:.2f}")
+        return total
+
+    def verificar_vacinacao(self):
+        if self.vacinado:
+            print(f"Saúde: {self.nome} está com a vacinação em dia")
+        else:
+            print(f" {self.nome} precisa ser vacinado")
+
+    def atualizar_peso(self, novo_peso):
+        self.peso = novo_peso
+        print(f"Atualização: O peso de {self.nome} foi atualizado para {self.peso} kg.")
+
+    def emitir_resumo(self):
+        print("\n" + "="*35)
+        print("=========  RESUMO DO PET ========")
+        print("="*35)
+        self.exibir_dados()
+        self.verificar_vacinacao()
+        self.calcular_diaria()
+        print("="*35 + "\n")
+
+
+
+
+# =====================================================================
+# TESTES DA CLASSE E ATIVIDADE FINAL
+# =====================================================================
+# 1. Criando pelo menos 3 objetos Pet
+# Parâmetros: nome, especie, idade, peso, vacinado, dono
+pet4 = Pet(input('Nome: '), input('Especie: '), int(input('idade: ')), float(input('peso: ')), False, input('dono: '))
+
+pet1 = Pet("Rex", "Cachorro", 5, 15.5, True, "João")
+pet2 = Pet("Mimi", "Gato", 2, 4.0, False, "Maria")
+pet3 = Pet("Thor", "Cachorro", 12, 30.0, True, "Carlos")
+
+pet4.exibir_dados()
+pet4.registrar_entrada()
+pet4.verificar_vacinacao()
+pet4.emitir_resumo()
+
+pets = []
+pets = []
+
+for i in range(10):
+    novo_pet = Pet(
+        input('Nome: '), 
+        input('Especie: '), 
+        int(input('idade: ')), 
+        float(input('peso: ')), 
+        False, 
+        input('dono: ')
+    )
+    pets.append(novo_pet)
+    pets[i].exibir_dados()
+    pets[i].registrar_entrada()
+    pets[i].verificar_vacinacao()
+    pets[i].emitir_resumo()
+
+
+print('ACABOU')
+for n in range(10):
+    pets[n].exibirdados
