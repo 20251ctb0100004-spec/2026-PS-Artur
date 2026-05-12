@@ -95,30 +95,14 @@ pet1 = Pet("Rex", "Cachorro", 5, 15.5, True, "João")
 pet2 = Pet("Mimi", "Gato", 2, 4.0, False, "Maria")
 pet3 = Pet("Thor", "Cachorro", 12, 30.0, True, "Carlos")
 
-pet4.exibir_dados()
-pet4.registrar_entrada()
-pet4.verificar_vacinacao()
-pet4.emitir_resumo()
+pet1.exibir_dados()
+pet1.registrar_entrada()
+pet1.verificar_vacinacao()
+print("Diária:", pet1.calcular_diaria())
+pet1.atualizar_peso(23.0)
+pet1.emitir_resumo()
 
-pets = []
-pets = []
-
-for i in range(10):
-    novo_pet = Pet(
-        input('Nome: '), 
-        input('Especie: '), 
-        int(input('idade: ')), 
-        float(input('peso: ')), 
-        False, 
-        input('dono: ')
-    )
-    pets.append(novo_pet)
-    pets[i].exibir_dados()
-    pets[i].registrar_entrada()
-    pets[i].verificar_vacinacao()
-    pets[i].emitir_resumo()
-
-
-print('ACABOU')
-for n in range(10):
-    pets[n].exibirdados
+pet3.exibir_dados()
+pet3.verificar_vacinacao()
+pet3.registrar_entrada()
+pet3.registrar_saida()
