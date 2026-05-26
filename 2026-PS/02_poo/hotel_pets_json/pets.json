@@ -1,0 +1,12 @@
+[
+    {
+        "nome": "Osorio",
+        "especie": "Cachorro",
+        "idade": 14,
+        "altura": 0.0,
+        "peso": 20.5,
+        "nome_dono": "Artur",
+        "vacinado": true,
+        "hospedado": false
+    }
+]
