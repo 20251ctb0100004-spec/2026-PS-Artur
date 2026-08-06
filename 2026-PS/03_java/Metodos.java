@@ -16,7 +16,7 @@ public class Metodos {
         }
     }
 
-    // CORREÇÃO 1: Ajustada a lógica das condições e removido o '=' do return
+    
     static double calcularFrete(double peso) {
         if (peso < 5) {
             return 10.00; // Pesos maiores que 5kg
@@ -55,13 +55,12 @@ public class Metodos {
         System.out.println("-----------------------------------");
 
         // --- Método 3: Frete ---
-        // CORREÇÃO 2: Adicionado o ';' que faltava no fim da linha
         System.out.print("Digite o peso para calcular o frete: "); 
 
         double peso = scanner.nextDouble();
         double frete = calcularFrete(peso);
         
-        // CORREÇÃO 3: Adicionado o print para mostrar o resultado do frete
+
         System.out.printf("O valor do frete é: R$ %.2f\n", frete);
         
         scanner.close(); 
