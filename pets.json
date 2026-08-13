@@ -1,0 +1,11 @@
+[
+    {
+        "nome": "Buddy",
+        "especie": "gato",
+        "idade": 67,
+        "peso": 9.0,
+        "nome_dono": "Anave",
+        "vacinado": true,
+        "hospedado": false
+    }
+]

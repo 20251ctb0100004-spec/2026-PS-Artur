@@ -29,3 +29,13 @@ Conteúdo completo de revisão dos fundamentos da linguagem, organizado de forma
 * 💻 **Programação de Sistemas | 2026**
 
 Este material é de caráter educacional. Sinta-se livre para estudar, modificar e compartilhar o conhecimento!
+
+## 🎯 Autoavaliacao
+Conceito pretendido: [ A / B / C / D ]
+
+Justificativa (cite a classe/metodo de cada criterio):
+- Ex 1-2 (arrays + metodos): calcularMedia(...) e contarAprovados(...)
+- Ex 3 (ArrayList): adicionarProduto(...) e listarProdutos(...)
+- Ex 4 (sobrecarga): maiorValor(int[]) e maiorValor(int, int)
+- Ex 5 (integracao): exibirBoletim reaproveita os metodos 1 e 2
+- Autoavaliacao: esta secao do README
