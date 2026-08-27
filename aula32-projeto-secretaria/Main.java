@@ -15,9 +15,9 @@ public class Main {
         ArrayList<Aluno> lista = new ArrayList<Aluno>();
 
         while (true) {
-            System.out.println("=====================================");
-            System.out.println("          SECRETARIA DO ARTUR        ");
-            System.out.println("=====================================");
+            System.out.println("=========================================================");
+            System.out.println("          SECRETARIA DO CAMPUS - por ARTUR LACERDA       ");
+            System.out.println("=========================================================");
             System.out.println("[1] Cadastrar Aluno");
             System.out.println("[2] Listar Alunos");
             System.out.println("[3] Buscar por Matricula");
@@ -49,28 +49,39 @@ public class Main {
         }
     }
 
-    static void cadastrar(ArrayList<Aluno> lista, Scanner teclado) {
-        System.out.print("Nome: ");
-        String nome = teclado.nextLine().trim();
-        
-        System.out.print("Matrícula: ");
-        String matricula = teclado.nextLine().trim();
+    private static String lerTextoNaoVazio(Scanner teclado, String mensagem){
+            String entrada = "";
+            while (entrada.isEmpty()) {
+                System.out.print(mensagem);
+                entrada = teclado.nextLine().trim();
+                if (entrada.isEmpty()){
+                    System.out.println("Nao aceitamos campos em branco");
+                }
+            }
+            return entrada;
+        }
 
-        Aluno existente = buscarPorMatricula(lista, matricula);
-        if (existente != null) {
-            System.out.println("Já existe um aluno com esta matrícula: " + matricula);
-            return;
+    static void cadastrar(ArrayList<Aluno> lista, Scanner teclado) {
+        String nome = lerTextoNaoVazio(teclado, "Nome: ");
+        
+        String matricula;
+        while (true) {
+            matricula = lerTextoNaoVazio(teclado, "Matrícula: ");
+            
+            Aluno existente = buscarPorMatricula(lista, matricula);
+            if (existente != null) {
+                System.out.println("Já existe um aluno com esta matrícula: " + matricula + ". Tente outra.");
+            } else {
+                break; // Matrícula é válida e única
+            }
         }
         
-        System.out.print("Curso: ");
-        String curso = teclado.nextLine().trim();
-
-        System.out.print("periodo: ");
-        String periodo = teclado.nextLine().trim();
+        String curso = lerTextoNaoVazio(teclado, "Curso: ");
+        String periodo = lerTextoNaoVazio(teclado, "Período: ");
 
         Aluno novoAluno = new Aluno(nome, matricula, curso, periodo);
         lista.add(novoAluno);
-        System.out.println("--> Aluno cadastrado com sucesso!");
+        System.out.println("Aluno cadastrado com sucesso");
     }
 
     static void listar(ArrayList<Aluno> lista) {
@@ -158,5 +169,7 @@ public class Main {
             }
         }
         System.out.println("Alunos de " + curso + ": " + contador);
-}
+    }
+
+    
 }
