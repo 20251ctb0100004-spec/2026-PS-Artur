@@ -21,19 +21,19 @@ public class Aluno {
     private String nome;
     private String matricula;
     private String curso;
-    private String cidade; // <-- o campo extra DESTE exemplo; troque pelo SEU campo se for diferente
+    private String periodo; // <-- o campo extra DESTE exemplo; troque pelo SEU campo se for diferente
 
     // CONSTRUTOR: roda no momento do "new" e preenche a ficha.
     // É o __init__ de vocês, em Java. Tem o mesmo nome da classe e não
     // declara tipo de retorno. Os valores chegam de fora, entre parênteses.
-    public Aluno(String nome, String matricula, String curso, String cidade) {
+    public Aluno(String nome, String matricula, String curso, String periodo) {
         // "this" = ESTA ficha aqui (o self do Java).
         // this.nome é o atributo da ficha; nome, sozinho, é o parâmetro
         // que acabou de chegar. Sem o this, os dois seriam o parâmetro.
         this.nome = nome;
         this.matricula = matricula;
         this.curso = curso;
-        this.cidade = cidade;
+        this.periodo = periodo;
     }
 
     // GETTERS: as janelas de leitura da ficha.
@@ -51,8 +51,8 @@ public class Aluno {
         return curso;
     }
 
-    public String getCidade() {
-        return cidade;
+    public String getperiodo() {
+        return periodo;
     }
 
     // SETTERS: a única porta de entrada para mudar um dado da ficha.
@@ -74,6 +74,6 @@ public class Aluno {
     // classe já tem por uma versão minha.
     @Override
     public String toString() {
-        return matricula + " | " + nome + " | " + curso + " | " + cidade;
+        return matricula + " | " + nome + " | " + curso + " | " + periodo;
     }
 }

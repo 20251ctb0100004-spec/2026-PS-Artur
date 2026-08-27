@@ -65,10 +65,10 @@ public class Main {
         System.out.print("Curso: ");
         String curso = teclado.nextLine().trim();
 
-        System.out.print("Cidade: ");
-        String cidade = teclado.nextLine().trim();
+        System.out.print("periodo: ");
+        String periodo = teclado.nextLine().trim();
 
-        Aluno novoAluno = new Aluno(nome, matricula, curso, cidade);
+        Aluno novoAluno = new Aluno(nome, matricula, curso, periodo);
         lista.add(novoAluno);
         System.out.println("--> Aluno cadastrado com sucesso!");
     }
@@ -158,4 +158,5 @@ public class Main {
             }
         }
         System.out.println("Alunos de " + curso + ": " + contador);
+}
 }
